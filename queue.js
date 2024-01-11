@@ -1,9 +1,9 @@
 /** Node: node for a queue. */
 
 class Node {
-  constructor(val) {
+  constructor(val, next=null) {
     this.val = val;
-    this.next = null;
+    this.next = next;
   }
 }
 
@@ -20,26 +20,52 @@ class Queue {
   /** enqueue(val): add new value to end of the queue. Returns undefined. */
 
   enqueue(val) {
+    let newNode = new Node(val)
 
+    if (this.first === null){
+      this.first = newNode
+    }
+    if (this.last !== null){
+      this.last.next = newNode
+    }
+    this.size ++
+    this.last = newNode
   }
 
   /** dequeue(): remove the node from the start of the queue
    * and return its value. Should throw an error if the queue is empty. */
 
   dequeue() {
-
+    if (this.size === 0){
+      throw new Error('Queue is empty');
+    }
+    const item = this.first;
+    
+    if (this.last === null){
+      this.first = null;
+      return item.val;
+    }
+    this.first = this.first.next;
+    this.size --;
+    return item.val;
   }
 
   /** peek(): return the value of the first node in the queue. */
 
   peek() {
-
+    if (this.first === null && this.last === null){
+      return console.log('The Queue is empty')
+    }
+    return this.first.val
   }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
   isEmpty() {
-
+    if (this.size === 0){
+      return true
+    }
+    return false
   }
 }
 
