@@ -53,19 +53,13 @@ class Queue {
   /** peek(): return the value of the first node in the queue. */
 
   peek() {
-    if (this.first === null && this.last === null){
-      return console.log('The Queue is empty')
-    }
     return this.first.val
   }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
   isEmpty() {
-    if (this.size === 0){
-      return true
-    }
-    return false
+    return !this.size
   }
 }
 
